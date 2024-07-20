@@ -22,7 +22,6 @@ const SpecialFeature = () => {
   const [image, setImage] = useState(null);
   const [solution, setSolution] = useState("");
   const [loading, setLoading] = useState(false);
-  const [loading2, setLoading2] = useState(false);
   const [error, setError] = useState(null);
   const geminiKey = "AIzaSyDl74GliVPGx3s8ZFfXtvnAPuSl1iAy848";
 
@@ -70,12 +69,11 @@ const SpecialFeature = () => {
 
   const generateImage = async () => {
     try {
-      const response = await query({ inputs: textInput });
+      const response = await query({ inputs: textInput + "picture" });
       if (response) {
         try {
           const base64 = await blobToBase64(response);
           const imageUri = `data:image/jpeg;base64,${base64}`;
-          console.log('Image URI:', imageUri); // Log the base64 URI
           setImage(imageUri);
         } catch (error) {
           setError('Error converting blob to base64');
@@ -91,7 +89,7 @@ const SpecialFeature = () => {
   };
   const handleSend = () => {
     setImage("");
-    setSolution('')
+    setSolution(false)
     try {
       if (textInput.trim() == "") {
         return;
@@ -132,19 +130,11 @@ const SpecialFeature = () => {
       );
 
       const data = await response.json();
-      setLoading2(true);
       setSolution(data.candidates[0].content.parts[0].text);
-      console.log(data.candidates[0].content.parts[0].text);
     } catch (error) {
       console.log(`Error fetching solution: ${error}`);
     }
   };
-
-  useEffect(() => {
-    if (loading2) {
-      setLoading2(false)
-    }
-  }, [loading2])
 
   return (
     <KeyboardAvoidingView
@@ -205,7 +195,7 @@ const SpecialFeature = () => {
             >
               Wanna Know Your Desired Dish Recipe ;
             </Text>
-            {loading && <ActivityIndicator style={{marginTop:100}} size="large" color="orange" />}
+            {solution === false && <ActivityIndicator style={{ marginTop: 100 }} size="large" color="orange" />}
           </>
         )}
       </ScrollView>
