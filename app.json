@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Flavour-Find-App",
-    "slug": "Flavour-Find-App",
+    "name": "flavour-find",
+    "slug": "flavour-find",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,6 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
