@@ -68,7 +68,7 @@ const navigation =useNavigation();
           <View className="flex-row justify-between ">
           <Pressable onPress={()=>{navigation.navigate("Special")}} className="pr-5" style={styles.button} >
           <Ionicons name="sparkles-sharp" size={24} color="white" style={{ marginRight: 3 }}/>
-            <Text className="text-neutral-600" style={styles.buttonText}>Find Your Own Flavour</Text> 
+            <Text className="text-neutral-600" style={styles.buttonText}>Dish Genie</Text> 
           </Pressable>
           <BellIcon size={hp(4)} color="gray"/>
           </View>
