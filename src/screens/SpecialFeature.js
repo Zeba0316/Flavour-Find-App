@@ -14,8 +14,11 @@ import {
 import React, { useEffect, useState } from "react";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import axios from "axios";
-// import * as ImagePicker from "expo-image-picker";
 import LottieView from "lottie-react-native";
+import { ChevronLeftIcon, ClockIcon } from 'react-native-heroicons/outline';
+import { useNavigation } from '@react-navigation/native';
+
+
 
 const SpecialFeature = () => {
   const [textInput, setTextInput] = useState("");
@@ -24,6 +27,7 @@ const SpecialFeature = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const geminiKey = "AIzaSyDl74GliVPGx3s8ZFfXtvnAPuSl1iAy848";
+  const navigation = useNavigation();
 
   async function query(data) {
     try {
@@ -145,7 +149,15 @@ const SpecialFeature = () => {
         backgroundColor: "#fee7cc",
       }}
     >
+       <View style={{ position: 'absolute', top: 50, left: 0, flexDirection: 'row', justifyContent: 'space-between', width: '100%', paddingHorizontal: 16 }}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={{ zIndex: 1, backgroundColor: "white", borderRadius: 45, padding: 5 }} >
+          <ChevronLeftIcon size={24} strokeWidth={2} color="#fbbf24" />
+        </TouchableOpacity>
+      </View>
+
+       
       <View style={{ alignSelf: "center", padding: 10, marginTop: 50 }}>
+        
         {image ? (
           <Image
             source={{ uri: image }}
@@ -188,12 +200,12 @@ const SpecialFeature = () => {
             <Text
               style={{
                 fontSize: 16,
-                fontWeight: 500,
+                fontWeight: 600,
                 color: "gray",
                 overflow: "hidden",
               }}
             >
-              Wanna Know Your Desired Dish Recipe ;
+              Wanna Know Your Desired Dish Recipe?
             </Text>
             {solution === false && <ActivityIndicator style={{ marginTop: 100 }} size="large" color="orange" />}
           </>

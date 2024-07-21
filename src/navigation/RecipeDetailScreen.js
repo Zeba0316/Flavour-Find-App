@@ -218,23 +218,7 @@ export default function RecipeDetailScreen(props) {
               </Text>
             </View>
 
-            {/* recipe video */}
-            {
-              meal.strYoutube && (
-                <View className="space-y-4">
-                  <Text style={{fontSize: hp(2.5),fontWeight:"bold",flex:1,color:'#4B5563', margin:12}} >Recipe Video</Text>
-                  {/* <View style={{ marginHorizontal: 12, marginBottom: 12 }}>
-                     <YoutubeIframe 
-                    videoId={getYoutubeVideoId(meal.strYoutube)} 
-                    height={hp(40)} 
-                    />
-                  </View> */}
-                </View>
-
-              )
-            }
-
-
+           
           
 
 

@@ -1,12 +1,15 @@
-import { View, Text,ScrollView,Image ,TextInput, Pressable} from 'react-native'
+import { View, Text,ScrollView,Image ,Pressable,StyleSheet,} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {  StatusBar } from 'react-native-web'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {BellIcon,MagnifyingGlassIcon} from 'react-native-heroicons/outline'
+import {BellIcon} from 'react-native-heroicons/outline'
 import Categories from '../components/Categories';
 import  axios from 'axios';
 import Recipes from '../components/recipes';
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
+
+
 
 export default function HomeScreen() {
 
@@ -51,6 +54,8 @@ const navigation =useNavigation();
       console.log('error: ',err.message);
     }
   }
+
+  
   return (
     <View className="flex-1 " style={{backgroundColor:"#fff1e6"}}>
       <StatusBar style="light"/>
@@ -59,10 +64,11 @@ const navigation =useNavigation();
       className="space-y-6 pt-14">
         {/* avatar and bell icon */}
         <View className="mx-4 flex-row justify-between item-center mb-2">
-          <Image source={require('../../assets/images/avatar.png')} style={{height:hp(6),width:hp(5)}}/>
+          <Image source={require('../../assets/images/fflogo1.png')} style={{height:hp(7),width:hp(7),marginTop:-3}}/>
           <View className="flex-row justify-between ">
-          <Pressable onPress={()=>{navigation.navigate("Special")}} className="pr-5" >
-            <Text className="text-neutral-600" style={{ paddingHorizontal:20,paddingVertical:10,backgroundColor:"orange",borderRadius:15}}>Find Your Own Flavour</Text>
+          <Pressable onPress={()=>{navigation.navigate("Special")}} className="pr-5" style={styles.button} >
+          <Ionicons name="sparkles-sharp" size={24} color="white" style={{ marginRight: 3 }}/>
+            <Text className="text-neutral-600" style={styles.buttonText}>Find Your Own Flavour</Text> 
           </Pressable>
           <BellIcon size={hp(4)} color="gray"/>
           </View>
@@ -71,7 +77,7 @@ const navigation =useNavigation();
         {/* greetings and punchline */}
         <View className="mx-4 space-y-2 mb-2 ">
           <Text style={{fontSize:hp(1.7)}} className="text-neutral-600">
-            Hello, Zeba!
+            Hello, Foodies!
           </Text>
           <View>
             <Text style={{fontSize:hp(3.8)}} className="font-semibold text-neutral-600 ">Make your own Food</Text>
@@ -121,5 +127,31 @@ const navigation =useNavigation();
         </View>
       </ScrollView>
     </View>
+
+    
   )
 }
+
+
+
+const styles = StyleSheet.create({
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 15,
+    backgroundColor: 'orange',
+    shadowColor: 'rgba(0, 0, 0, 0.25)',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
+    marginRight: 10,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+});
